@@ -1,5 +1,6 @@
 package com.rw.carriages.services;
 
+import com.rw.carriages.dao.CarriageDao;
 import com.rw.carriages.dto.CarriageGraphic;
 import com.rw.carriages.dto.request.GraphicRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ import java.util.List;
 public class GraphicService {
     @Autowired
     XMLGateService xmlGateService;
+
+    @Autowired
+    CarriageDao carriageDao;
 
     public List<CarriageGraphic> getCarriageGraphic(@Valid GraphicRequirement graphicRequirement) {
         return new ArrayList<CarriageGraphic>();
