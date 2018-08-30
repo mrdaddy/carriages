@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15a8826b-8681-48d3-9543-b21d28980227" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/rw/carriages/dao/CarriageDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/rw/carriages/services/GraphicService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rw/carriages/services/GraphicService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/rw/carriages/controllers/GraphicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/rw/carriages/controllers/GraphicController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -27,14 +26,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="39" />
-          <entry key="java" value="3025" />
+          <entry key="java" value="3027" />
           <entry key="txt" value="18" />
           <entry key="xml" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3025" />
+          <entry key="JAVA" value="3027" />
           <entry key="PLAIN_TEXT" value="57" />
           <entry key="XML" value="21" />
         </counts>
@@ -101,11 +100,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rw/carriages/controllers/GraphicController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
+            <state relative-caret-position="195">
+              <caret line="35" column="254" selection-start-line="35" selection-start-column="254" selection-end-line="35" selection-end-column="254" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -113,11 +112,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/rw/carriages/services/GraphicService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+            <state relative-caret-position="476">
+              <caret line="28" column="29" lean-forward="true" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#639#640#0" expanded="true" />
@@ -210,12 +209,12 @@
         <option value="$PROJECT_DIR$/src/main/java/com/rw/carriages/SwaggerConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rw/carriages/dto/request/Carriage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rw/carriages/dto/SeatCoordinate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/rw/carriages/controllers/GraphicController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rw/carriages/dto/CarriageGraphic.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rw/carriages/services/XMLGateService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rw/carriages/dto/request/GraphicRequirement.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rw/carriages/dao/CarriageDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/rw/carriages/services/GraphicService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/rw/carriages/controllers/GraphicController.java" />
       </list>
     </option>
   </component>
@@ -344,7 +343,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535620141345" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1535621346268" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../directories" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -431,7 +430,7 @@
       <option name="presentableId" value="Default" />
       <updated>1535526711253</updated>
       <workItem from="1535526716147" duration="21410000" />
-      <workItem from="1535612366918" duration="7392000" />
+      <workItem from="1535612366918" duration="8589000" />
     </task>
     <task id="LOCAL-00001" summary="development commit">
       <created>1535619768439</created>
@@ -440,11 +439,18 @@
       <option name="project" value="LOCAL" />
       <updated>1535619768439</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="development commit">
+      <created>1535620150234</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1535620150234</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28802000" />
+    <option name="totallyTimeSpent" value="29999000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -550,16 +556,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/rw/carriages/controllers/GraphicController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rw/carriages/dto/request/Carriage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-17">
@@ -627,12 +623,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/rw/carriages/services/GraphicService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="21" column="28" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+        <state relative-caret-position="476">
+          <caret line="28" column="29" lean-forward="true" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#639#640#0" expanded="true" />
             <element signature="e#675#676#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/rw/carriages/controllers/GraphicController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="35" column="254" selection-start-line="35" selection-start-column="254" selection-end-line="35" selection-end-column="254" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

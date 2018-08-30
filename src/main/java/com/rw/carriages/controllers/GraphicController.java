@@ -27,7 +27,13 @@ public class GraphicController {
     @ApiOperation(value = "Получение графического представления вагонов и информации по вагонам")
     @ResponseBody
     @ResponseStatus( HttpStatus.OK )
-    public List<CarriageGraphic> getCarriagesGraphic(@ApiParam GraphicRequirement graphicRequirement) {
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK",
+                    responseHeaders = {
+                            @ResponseHeader(name = "ETag", response = String.class, description = "Хеш для кэширования")}),
+            @ApiResponse(code = 304, message = "Not Modified")
+    })
+    public List<CarriageGraphic> getCarriagesGraphic(@ApiParam GraphicRequirement graphicRequirement, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
         return graphicService.getCarriageGraphic(graphicRequirement);
     }
 
@@ -35,7 +41,13 @@ public class GraphicController {
     @ApiOperation(value = "Получение подложки вагона в виде изображения")
     @ResponseBody
     @ResponseStatus( HttpStatus.OK )
-    public byte[] getCarriagesGraphic(@PathVariable(value = "modelId") @ApiParam(example = "1", value = "Уникальный идентификатор записи модели вагона", required = true) int imageId) {
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK",
+                    responseHeaders = {
+                            @ResponseHeader(name = "ETag", response = String.class, description = "Хеш для кэширования")}),
+            @ApiResponse(code = 304, message = "Not Modified")
+    })
+    public byte[] getCarriagesGraphic(@PathVariable(value = "modelId") @ApiParam(example = "1", value = "Уникальный идентификатор записи модели вагона", required = true) int imageId, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
         return graphicService.getCarriageImage(imageId);
     }
 
