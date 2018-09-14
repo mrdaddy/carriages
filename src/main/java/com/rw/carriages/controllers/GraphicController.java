@@ -12,14 +12,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@ApiResponses(value = {
-        @ApiResponse(code = 400, message = "Bad request", response = ErrorMessage.class, responseContainer = "List")
-})
 @RestController
 @Api(value="carriages/graphic", description="Cервис графического представления вагонов и информации по вагонам", tags = "Графическое представления вагонов", basePath="/carriages/graphic")
 @RequestMapping(path = "/${service.version}/carriages/graphic")
 
-public class GraphicController {
+public class GraphicController extends BaseController{
     @Autowired
     GraphicService graphicService;
 

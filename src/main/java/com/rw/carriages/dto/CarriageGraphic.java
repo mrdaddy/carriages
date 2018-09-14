@@ -14,4 +14,6 @@ public class CarriageGraphic {
 
     @ApiModelProperty(required = true)
     private List<SeatCoordinate> seatCoordinates;
+
+    private PreOrder preOrder;
 }
