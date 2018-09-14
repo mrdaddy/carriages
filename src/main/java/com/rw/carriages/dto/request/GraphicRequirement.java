@@ -20,7 +20,6 @@ public class GraphicRequirement {
 
     @ApiModelProperty(example = "V", required = true, value = "Ориентация изображения вагона: V - вертикальная, H - горизонтальная", dataType = "String")
     @NotNull
-    @Size(min=1,max=1)
     private ORIENTATION orientation;
 
     @ApiModelProperty(example = "100", required = false, value = "Ширина изображения в пикселях исходя из которого будут пересчитываться координаты. Под шириной понимается ширина на экране пользователя, следовательно для разных ориентаций координаты будут высчитываться по разным сторонам изображения вагона", dataType = "int")
