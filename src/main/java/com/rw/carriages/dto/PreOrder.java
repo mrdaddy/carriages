@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @ApiModel(description = "Бизнес-правила, необходимых для выполнения при оформлении и оплате мест из данного вагона")
 public class PreOrder {
-    public enum BEFORE_ORDER_MESSAGE {M1, M2, M3}
+    public enum BEFORE_ORDER_MESSAGE {M1, M2, M3, M4}
     @ApiModelProperty(example = "false", required = true, value = "Признак, нужна ли принудительная ЭР на указанный поезд и вагон", dataType = "boolean")
     private boolean isRegistrationMandatory;
 
