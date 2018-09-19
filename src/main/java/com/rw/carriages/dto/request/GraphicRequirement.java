@@ -39,6 +39,6 @@ public class GraphicRequirement {
 
     @ApiModelProperty(required = true)
     @NotEmpty
-    private List<Carriage> carriages;
+    private List<CarriageInfo> carriageInfos;
 
 }

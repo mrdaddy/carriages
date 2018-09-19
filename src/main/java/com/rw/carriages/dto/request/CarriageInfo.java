@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Data
 @ApiModel(description = "Данные о вагоне из справок расписания")
-public class Carriage {
+public class CarriageInfo {
     @ApiModelProperty(example = "1", required = true, value = "Номер вагона", dataType = "int")
     @NotNull @Max(10000)
     private int num;
@@ -23,6 +23,10 @@ public class Carriage {
     @NotNull
     @Size(min=1, max = 1)
     private String typeCode;
+
+    @ApiModelProperty(example = "19С", required = false, value = "Подтип вагона - код", dataType = "String")
+    @Size(max = 5)
+    private String subType;
 
     @ApiModelProperty(example = "РИЦ", required = true, value = "Тип вагона для отображения, заполняется, если отличается от обычного типа вагона (параметр TypeShow из ответа шлюза) - код", dataType = "String")
     @Size(max = 3)
@@ -44,7 +48,7 @@ public class Carriage {
     @Size(max = 32)
     private String carrier;
 
-    @ApiModelProperty(example = "002,004,006", required = false, value = "Номера свободных мест", dataType = "String")
+    @ApiModelProperty(example = "002,004,006", required = false, value = "Номера свободных мест, разделённые через запятую", dataType = "String")
     @Size(max = 1000)
     private String freeSeats;
 

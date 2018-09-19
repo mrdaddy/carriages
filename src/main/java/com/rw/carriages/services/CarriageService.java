@@ -1,35 +1,32 @@
 package com.rw.carriages.services;
 
+import by.iba.railway.eticket.xml.exception.BusinessSystemException;
+import by.iba.railway.eticket.xml.exception.XmlParserSystemException;
 import com.rw.carriages.dao.CarriageDao;
-import com.rw.carriages.dao.ParameterDao;
+import com.rw.carriages.dto.Carriage;
 import com.rw.carriages.dto.CarriageGraphic;
-import com.rw.carriages.dto.request.Carriage;
+import com.rw.carriages.dto.request.CarriageInfo;
 import com.rw.carriages.dto.request.GraphicRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service
 @Validated
 public class CarriageService {
-    @Autowired
-    XMLGateService xmlGateService;
 
     @Autowired
     CarriageDao carriageDao;
@@ -43,12 +40,12 @@ public class CarriageService {
     @Autowired
     GraphicService graphicService;
 
-    public List<CarriageGraphic> getCarriageGraphic(@Valid GraphicRequirement graphicRequirement) {
-        List<CarriageGraphic> carriageGraphics = new ArrayList<>();
-        for(int i = 0; i<graphicRequirement.getCarriages().size(); i++) {
-            carriageGraphics.add(createCarriageGraphic(graphicRequirement,i));
+    public List<Carriage> getCarriageGraphic(@Valid GraphicRequirement graphicRequirement) throws XmlParserSystemException, BusinessSystemException, JSONException {
+        List<Carriage> carriages = new ArrayList<>();
+        for(int i = 0; i<graphicRequirement.getCarriageInfos().size(); i++) {
+            carriages.add(createCarriageGraphic(graphicRequirement,i));
         }
-        return carriageGraphics;
+        return carriages;
     }
 
     public ResponseEntity<InputStreamResource> getCarriageImage(@Valid @Min(1) int modelId) {
@@ -62,15 +59,15 @@ public class CarriageService {
 
     }
 
-    private CarriageGraphic createCarriageGraphic(GraphicRequirement graphicRequirement, int carNum) {
-        Carriage carriage = graphicRequirement.getCarriages().get(carNum);
-        CarriageGraphic carriageGraphic = carReqService.createCarriageGraphic(carriage);
-        carriageGraphic.setPreOrder(preOrderService.createPreOrder(graphicRequirement.getTrain(), graphicRequirement.getDepStationCode(), carriage));
-
-        if(carReqService.isNationalCarrier(carriage.getCarrier())) {
-            graphicService.fillGraphic(graphicRequirement, carNum);
+    private Carriage createCarriageGraphic(GraphicRequirement graphicRequirement, int carNum) throws XmlParserSystemException, BusinessSystemException, JSONException {
+        CarriageInfo carriageInfo = graphicRequirement.getCarriageInfos().get(carNum);
+        Carriage carriage = carReqService.createCarriage(carriageInfo);
+        if(carReqService.isNationalCarrier(carriageInfo.getCarrier())) {
+            carriage.setCarriageGraphic(graphicService.getGraphicCarriage(graphicRequirement, carNum));
         }
-        return carriageGraphic;
+        carriage.setPreOrder(preOrderService.createPreOrder(graphicRequirement.getTrain(), graphicRequirement.getDepStationCode(), carriageInfo));
+
+        return carriage;
     }
 
 }

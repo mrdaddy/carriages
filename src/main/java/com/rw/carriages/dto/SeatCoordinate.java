@@ -39,4 +39,7 @@ public class SeatCoordinate {
 
     @ApiModelProperty(example = "12.12", required = false, value = "Тариф места", dataType = "double")
     private double tariff;
+
+   // @ApiModelProperty(example = "3П", required = true, value = "Класс обслуживания для данного места", dataType = "String")
+  //  private String sc;
 }

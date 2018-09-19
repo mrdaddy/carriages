@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>carriages</name>
+    <name>carriage</name>
     <description>API for carriages graphic</description>
 
     <parent>

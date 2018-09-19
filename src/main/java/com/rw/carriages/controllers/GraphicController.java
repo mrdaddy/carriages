@@ -1,10 +1,13 @@
 package com.rw.carriages.controllers;
 
-import com.rw.carriages.dto.CarriageGraphic;
+import by.iba.railway.eticket.xml.exception.BusinessSystemException;
+import by.iba.railway.eticket.xml.exception.XmlParserSystemException;
+import com.rw.carriages.dto.Carriage;
 import com.rw.carriages.dto.request.GraphicRequirement;
 import com.rw.carriages.services.CarriageService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Api(value="carriages/graphic", description="Cервис графического представления вагонов и информации по вагонам", tags = "Графическое представления вагонов", basePath="/carriages/graphic")
+@Api(value="carriages", description="Cервис графического представления вагонов и информации по вагонам", tags = "Информация о вагонах", basePath="/carriages")
 @RequestMapping(path = "/${service.version}/carriages/graphic")
 
 public class GraphicController extends BaseController{
@@ -22,7 +25,7 @@ public class GraphicController extends BaseController{
     CarriageService carriageService;
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ApiOperation(value = "Получение графического представления вагонов и информации по вагонам")
+    @ApiOperation(value = "Получение графического представления и информации по вагонам")
     @ResponseBody
     @ResponseStatus( HttpStatus.OK )
     @ApiResponses(value = {
@@ -31,7 +34,7 @@ public class GraphicController extends BaseController{
                             @ResponseHeader(name = "ETag", response = String.class, description = "Хеш для кэширования")}),
             @ApiResponse(code = 304, message = "Not Modified")
     })
-    public List<CarriageGraphic> getCarriagesGraphic(@ApiParam GraphicRequirement graphicRequirement, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
+    public List<Carriage> getCarriagesGraphic(@ApiParam GraphicRequirement graphicRequirement, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) throws XmlParserSystemException, BusinessSystemException, JSONException {
         return carriageService.getCarriageGraphic(graphicRequirement);
     }
 
