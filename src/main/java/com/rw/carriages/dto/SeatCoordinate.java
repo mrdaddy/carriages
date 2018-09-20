@@ -13,6 +13,7 @@ public class SeatCoordinate {
     public enum SEAT_TYPE {T, B, M, ST, SB}
 
 
+    
     @ApiModelProperty(example = "1", required = true, value = "Количество пикселей вниз относительно верхнего левого угла подложки. Координата верхнего левого угла квадрата места. Пересчитывается согласно введённому параметру ширины подложки", dataType = "int")
     private int top;
 

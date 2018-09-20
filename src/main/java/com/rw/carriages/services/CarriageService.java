@@ -66,6 +66,7 @@ public class CarriageService {
             carriage.setCarriageGraphic(graphicService.getGraphicCarriage(graphicRequirement, carNum));
         }
         carriage.setPreOrder(preOrderService.createPreOrder(graphicRequirement.getTrain(), graphicRequirement.getDepStationCode(), carriageInfo));
+      //  String basicAuth = "Basic " + new String(Base64.encodeBase64(userpass.getBytes()));
 
         return carriage;
     }

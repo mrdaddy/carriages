@@ -109,10 +109,21 @@
             <artifactId>guava</artifactId>
             <version>26.0-jre</version>
         </dependency>
+
         <dependency>
             <groupId>com.rw.xml</groupId>
             <artifactId>xmlgate</artifactId>
             <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.11.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.11.1</version>
         </dependency>
 
         <!-- <dependency>

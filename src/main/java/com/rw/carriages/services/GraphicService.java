@@ -56,7 +56,7 @@ public class GraphicService {
         }
         if (graphicCarriage == null && !StringUtils.isEmpty(carriageInfo.getSubType())) {
             graphicCarriage = graphicDao.getSubtypeGraphicCarriage(CarTypeUtil.transformShowType(carriageInfo.getTypeCodeShow()), carriageInfo.getSubType(), carriageInfo.getServiceClassCode(), availableServiceClasses);
-            if (!graphicCarriage.isActive()) {
+            if (graphicCarriage!=null && !graphicCarriage.isActive()) {
                 return null;
             }
         }
@@ -174,12 +174,12 @@ public class GraphicService {
                 seatCoordinate.setCn(sign.getInt(cpName));
             }
 
-            if (sign.has("tp") && sign.getString("tp") != null) {
+            if (sign.has("tp") && !StringUtils.isEmpty(sign.getString("tp"))) {
                 seatCoordinate.setSt(SeatCoordinate.SEAT_TYPE.valueOf(sign.getString("tp").toUpperCase()));
             }
 
             String coupeType = seatProcessor.getCoupType(no);
-            if (coupeType != null) {
+            if (!StringUtils.isEmpty(coupeType)) {
                 seatCoordinate.setMwt(SeatCoordinate.SEX_TYPE.valueOf(coupeType));
             }
 
@@ -193,7 +193,7 @@ public class GraphicService {
                     styleClass = seatProcessor.getSingleDoubleStyleClass(no, styleClass, seatCoordinate.getCp().toString(), seatCoordinate.getCn(), signArray);
                 }
                 if (!SeatCoordinate.ACCESS_TYPE.F.equals(styleClass) && "1/2".equals(carriageInfo.getServiceClassIntCode())) {
-                    styleClass = seatProcessor.getSyleClassByAddPlaces(no, styleClass);
+                    styleClass = seatProcessor.getStyleClassByAddPlaces(no, styleClass);
                 }
                 if (!SeatCoordinate.ACCESS_TYPE.N.equals(styleClass)) {
                     hasSeats = true;
@@ -222,17 +222,19 @@ public class GraphicService {
         return seatCoordinates;
     }
 
-    private String calcAddFreePlaces(GraphicRequirement graphicRequirement, int carNum) {
-        String addPlaces = "";
+    private Map<String,Double> calcAddFreePlaces(GraphicRequirement graphicRequirement, int carNum) {
+        Map<String,Double> addPlaces = new HashMap<>();
         CarriageInfo carriageInfo = graphicRequirement.getCarriageInfos().get(carNum);
         for(int i = 0; i< graphicRequirement.getCarriageInfos().size(); i++) {
             CarriageInfo carInfo = graphicRequirement.getCarriageInfos().get(i);
             if(i != carNum && carriageInfo.getNum() == carInfo.getNum()) {
                 if(!StringUtils.isEmpty(carInfo.getFreeSeats())) {
-                    if (!StringUtils.isEmpty(addPlaces)) {
-                        addPlaces += ";";
+                    String[] seats = carInfo.getFreeSeats().split(",");
+                    if(seats!=null) {
+                        for(String seat: seats) {
+                            addPlaces.put(SeatInfoProcessor.prepareNo(seat),carInfo.getTariff());
+                        }
                     }
-                    addPlaces+=carInfo.getFreeSeats();
                 }
             }
         }

@@ -16,7 +16,7 @@ import java.util.List;
 @ApiModel(description = "Данные о вагонах и требования к координатам")
 public class GraphicRequirement {
     public enum ORIENTATION {V,H};
-    @ApiModelProperty(example = "201Б", required = true, value = "Номер поезда отправления", dataType = "String")
+    @ApiModelProperty(example = "708Б", required = true, value = "Номер поезда отправления", dataType = "String")
     @NotNull
     @Size(min=4,max=5)
     private String train;
@@ -25,7 +25,7 @@ public class GraphicRequirement {
     @NotNull @Size(min=7,max=8)
     private String depStationCode;
 
-    @ApiModelProperty(example = "2018-08-24", required = true, value = "Дата отправления со станции пассажира", dataType = "Date")
+    @ApiModelProperty(example = "2018-09-24", required = true, value = "Дата отправления со станции пассажира", dataType = "Date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date departureDate;
 

@@ -37,13 +37,15 @@ public class CarriageGraphic {
     @ApiModelProperty(example = "1", required = true, value = "Расчитанная высота подложки", dataType = "int")
     private int modelHeight;
 
-    @JsonIgnore
+    @ApiModelProperty(example = "1", required = false, value = "Номер первого места в вагоне", dataType = "int")
     private int seatFirstNum;
-    @JsonIgnore
+
+    @ApiModelProperty(example = "20", required = false, value = "Номер последнего места в вагоне", dataType = "int")
     private int seatLastNum;
     @JsonIgnore
     private boolean active;
 
+    @JsonIgnore
     private List<GraphicSeatBean> seats;
 
     @ApiModelProperty(example = "1", required = false, value = "Направление движения поезда", dataType = "String")

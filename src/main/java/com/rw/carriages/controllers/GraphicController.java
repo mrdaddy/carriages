@@ -34,7 +34,7 @@ public class GraphicController extends BaseController{
                             @ResponseHeader(name = "ETag", response = String.class, description = "Хеш для кэширования")}),
             @ApiResponse(code = 304, message = "Not Modified")
     })
-    public List<Carriage> getCarriagesGraphic(@ApiParam GraphicRequirement graphicRequirement, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) throws XmlParserSystemException, BusinessSystemException, JSONException {
+    public List<Carriage> getCarriagesGraphic(@RequestBody @ApiParam(required = true) GraphicRequirement graphicRequirement, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) throws XmlParserSystemException, BusinessSystemException, JSONException {
         return carriageService.getCarriageGraphic(graphicRequirement);
     }
 
@@ -47,6 +47,7 @@ public class GraphicController extends BaseController{
                             @ResponseHeader(name = "ETag", response = String.class, description = "Хеш для кэширования")}),
             @ApiResponse(code = 304, message = "Not Modified")
     })
+
     public @ResponseBody ResponseEntity<InputStreamResource> getCarriagesGraphic(@PathVariable(value = "modelId") @ApiParam(example = "1", value = "Уникальный идентификатор записи модели вагона", required = true) int imageId, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
         return carriageService.getCarriageImage(imageId);
     }

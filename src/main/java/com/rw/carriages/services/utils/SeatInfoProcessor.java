@@ -1,8 +1,6 @@
 package com.rw.carriages.services.utils;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.rw.carriages.dto.CarriageGraphic;
 import com.rw.carriages.dto.SeatCoordinate;
@@ -14,16 +12,22 @@ import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.util.StringUtils;
 
 public class SeatInfoProcessor {
-    private Map<String,String[]> freePlacesMap = new HashMap<String,String[]>();
-    private String carType;
-    private String placesAdd;
-    private Map<String,String> fares;
+    private Map<String,Object[]> freePlacesMap = new HashMap<String,Object[]>();
+    private Map<String,Double> placesAdd;
+    private Set<String> places;
     private String serviceClassInt;
     private String carTypeLetterShow;
-    public SeatInfoProcessor(CarriageInfo carriageInfo, String addFreePlaces) {
+    private Double tariff;
+    public SeatInfoProcessor(CarriageInfo carriageInfo, Map<String,Double> addFreePlaces) {
         String freePlacesStr = carriageInfo.getFreeSeats();
-        this.carType = carriageInfo.getTypeCode();
-        this.placesAdd = addFreePlaces;
+       // this.placesAdd = StringUtils.collectionToCommaDelimitedString(addFreePlaces.keySet());
+        if(addFreePlaces!=null) {
+            this.placesAdd = addFreePlaces;
+        } else {
+            this.placesAdd = new HashMap<>();
+        }
+        this.places = StringUtils.commaDelimitedListToSet(carriageInfo.getFreeSeats());
+        this.tariff = carriageInfo.getTariff();
         this.serviceClassInt = carriageInfo.getServiceClassIntCode();
         this.carTypeLetterShow = CarTypeUtil.transformShowType(carriageInfo.getTypeCodeShow());
         //fillFaresMap(options.getFares());
@@ -34,7 +38,7 @@ public class SeatInfoProcessor {
 
     public String getCoupType(String no) {
         if(freePlacesMap.containsKey(no) && freePlacesMap.get(no)!=null) {
-            return freePlacesMap.get(no)[0];
+            return (String)freePlacesMap.get(no)[0];
         } else {
             return "";
         }
@@ -42,20 +46,20 @@ public class SeatInfoProcessor {
 
     public Double getTariff(String no) {
         if(freePlacesMap.containsKey(no) && freePlacesMap.get(no).length>1 && freePlacesMap.get(no)[1]!=null) {
-            return Double.parseDouble(freePlacesMap.get(no)[1]);
+            return (Double)(freePlacesMap.get(no)[1]);
         } else {
             return 0d;
         }
     }
 
-    public SeatCoordinate.ACCESS_TYPE getSyleClassByAddPlaces(String no, SeatCoordinate.ACCESS_TYPE styleClass) {
+    public SeatCoordinate.ACCESS_TYPE getStyleClassByAddPlaces(String no, SeatCoordinate.ACCESS_TYPE styleClass) {
         styleClass = isInAddPlaces(no)?SeatCoordinate.ACCESS_TYPE.F:styleClass;
         return styleClass;
     }
 
     private boolean isInAddPlaces(String no) {
         boolean result = false;
-        String[] places = !StringUtils.isEmpty(placesAdd)?placesAdd.split(", "):null;
+        Set<String> places = placesAdd.keySet();
         if(places!=null) {
             for(String place: places) {
                 if(parseNo(place)==parseNo(no)) {
@@ -174,10 +178,19 @@ public class SeatInfoProcessor {
     }
 
     private void parseFreePlaces(String freePlacesStr) {
-        String[] freePlaces = freePlacesStr.split(", ");
+        String[] freePlaces = freePlacesStr.split(",");
         for(String freePlace: freePlaces) {
+            freePlace = freePlace.trim();
             String preparedPlace = prepareNo(freePlace);
-            freePlacesMap.put(preparedPlace, new String[]{ calculateCoupeType(freePlace), fares.get(preparedPlace) });
+            freePlacesMap.put(preparedPlace, new Object[]{ calculateCoupeType(freePlace), calcTariff(freePlace) });
+        }
+    }
+
+    private Double calcTariff(String place) {
+        if(places.contains(place)) {
+            return tariff;
+        } else {
+            return placesAdd.get(prepareNo(place));
         }
     }
 
@@ -244,14 +257,14 @@ public class SeatInfoProcessor {
         return type;
     }
 
-    private int parseNo(String no) {
+    private static int parseNo(String no) {
         no = prepareNo(no);
         no = no.replace("А", "");
         return Integer.parseInt(no);
     }
 
 
-    public String prepareNo(String no) {
+    public static String prepareNo(String no) {
         no = no.toUpperCase();
         no = no.replace("A0", "A");
         no = no.replace("А0", "А");

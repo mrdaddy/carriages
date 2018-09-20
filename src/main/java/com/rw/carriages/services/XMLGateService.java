@@ -53,7 +53,7 @@ public class XMLGateService {
 
     public Seat46TypeBean getSeatsInfo(String trainNumber, int carNumber, String carType, String carClassService, Date date) throws XmlParserSystemException, BusinessSystemException {
         connectToService();
-        String dateStr = DateTimeConverter.getDateString(date);
+        String dateStr = DateTimeConverter.getDateFullString(date);
         TrainSchemeG46Response response = getResponse(trainNumber, dateStr);
         Seat46TypeBean seatType = null;
         if(response!=null && response.getTrain()!=null && response.getTrain().getCar()!=null) {
