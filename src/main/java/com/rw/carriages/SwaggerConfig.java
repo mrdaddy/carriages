@@ -29,8 +29,8 @@ public class SwaggerConfig {
                 .title("Сервис графического представления вагонов и информации по вагонам")
                 .description("Сервис включает в себя список операций получения графического представления вагона из СППД")
                 .version("v1")
-                .license("")
-                .licenseUrl("")
+                .license("БЖД")
+                .licenseUrl("https://www.rw.by/")
                 .build();
     }
 }

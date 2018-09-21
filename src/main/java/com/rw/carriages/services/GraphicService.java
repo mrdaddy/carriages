@@ -62,7 +62,8 @@ public class GraphicService {
         }
 
         if (graphicCarriage == null) {
-            graphicCarriage = getG46GraphicCarriage(carriageInfo, graphicRequirement.getTrain(), graphicRequirement.getDepartureDate(), availableServiceClasses);
+            Date date = carriageInfo.getDepartureDate()!=null ? carriageInfo.getDepartureDate() : graphicRequirement.getDepartureDate();
+            graphicCarriage = getG46GraphicCarriage(carriageInfo, graphicRequirement.getTrain(), date, availableServiceClasses);
         }
 
         if (graphicCarriage != null) {

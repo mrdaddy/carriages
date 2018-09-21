@@ -48,7 +48,7 @@ public class GraphicController extends BaseController{
             @ApiResponse(code = 304, message = "Not Modified")
     })
 
-    public @ResponseBody ResponseEntity<InputStreamResource> getCarriagesGraphic(@PathVariable(value = "modelId") @ApiParam(example = "1", value = "Уникальный идентификатор записи модели вагона", required = true) int imageId, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
+    public @ResponseBody ResponseEntity<byte[]> getCarriagesGraphic(@PathVariable(value = "modelId") @ApiParam(example = "1", value = "Уникальный идентификатор записи модели вагона", required = true) int imageId, @RequestHeader(name="IF-NONE-MATCH", required = false) @ApiParam(name="IF-NONE-MATCH", value = "ETag из предыдущего закэшированного запроса") String inm) {
         return carriageService.getCarriageImage(imageId);
     }
 

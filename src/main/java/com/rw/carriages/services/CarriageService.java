@@ -48,13 +48,11 @@ public class CarriageService {
         return carriages;
     }
 
-    public ResponseEntity<InputStreamResource> getCarriageImage(@Valid @Min(1) int modelId) {
+    public ResponseEntity<byte[]> getCarriageImage(@Valid @Min(1) int modelId) {
         byte[] imageBytes = carriageDao.getCarriageImage(modelId);
-        InputStream inputStream = new ByteArrayInputStream(imageBytes);
         HttpHeaders responseHeaders = new HttpHeaders();
-        InputStreamResource inputStreamResource = new InputStreamResource(inputStream);
         responseHeaders.setContentType(MediaType.IMAGE_PNG);
-        return new ResponseEntity<>(inputStreamResource, responseHeaders,
+        return new ResponseEntity<>(imageBytes, responseHeaders,
                 HttpStatus.OK);
 
     }

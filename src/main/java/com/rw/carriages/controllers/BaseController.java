@@ -69,24 +69,22 @@ public class BaseController {
         }
     }
     @ExceptionHandler(ConnectException.class)
-    protected List<ErrorMessage> handleConnectException(ConnectException e) {
+    protected ResponseEntity<?> handleConnectException(ConnectException e) {
         List<ErrorMessage> errors = new ArrayList<>();
         errors.add(new ErrorMessage(ERROR_PREFIX.system+".database_error", e.getMessage()));
-        return errors;
+        return new ResponseEntity(errors, HttpStatus.GATEWAY_TIMEOUT);
     }
 
     @ExceptionHandler(EmptyResultDataAccessException.class)
-    protected List<ErrorMessage> handleDataAccessException(EmptyResultDataAccessException e) {
-        List<ErrorMessage> errors = new ArrayList<>();
-        errors.add(new ErrorMessage(ERROR_PREFIX.system+".database_error", e.getMessage()));
-        return errors;
+    protected ResponseEntity<?> handleDataAccessException(EmptyResultDataAccessException e) {
+        return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(SQLException.class)
-    protected List<ErrorMessage> handleSQLException(SQLException e) {
+    protected ResponseEntity<?> handleSQLException(SQLException e) {
         List<ErrorMessage> errors = new ArrayList<>();
         errors.add(new ErrorMessage(ERROR_PREFIX.system+".database_error", e.getMessage()));
-        return errors;
+        return new ResponseEntity(errors, HttpStatus.SERVICE_UNAVAILABLE);
     }
 
 }
