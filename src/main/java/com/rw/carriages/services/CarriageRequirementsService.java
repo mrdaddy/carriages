@@ -38,7 +38,7 @@ public class CarriageRequirementsService {
     }
 
     private boolean calculateDownUpReq(CarriageInfo carriageInfo) {
-        if(!carriageInfo.isOnly2m() && (carriageInfo.getTypeCode().equals("П") || carriageInfo.getTypeCode().equals("К")
+        if(!carriageInfo.isSaleOnTwo() && (carriageInfo.getTypeCode().equals("П") || carriageInfo.getTypeCode().equals("К")
                 || carriageInfo.getServiceClassIntCode()!=null &&
                     (carriageInfo.getServiceClassIntCode().equals("2/4") || carriageInfo.getServiceClassIntCode().equals("2/3")))) {
             return true;
