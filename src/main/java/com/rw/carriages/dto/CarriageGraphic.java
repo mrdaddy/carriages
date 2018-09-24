@@ -13,7 +13,7 @@ import java.util.List;
 @ApiModel(description = "Графическая информация о вагоне")
 @NoArgsConstructor
 public class CarriageGraphic {
-
+    public enum TRAVEL_DIRECTION {H, T}
     @ApiModelProperty(example = "1", required = true, value = "Уникальный идентификатор записи модели вагона", dataType = "int")
     private int modelId;
 
@@ -42,12 +42,13 @@ public class CarriageGraphic {
 
     @ApiModelProperty(example = "20", required = false, value = "Номер последнего места в вагоне", dataType = "int")
     private int seatLastNum;
+
     @JsonIgnore
     private boolean active;
 
     @JsonIgnore
     private List<GraphicSeatBean> seats;
 
-    @ApiModelProperty(example = "1", required = false, value = "Направление движения поезда", dataType = "String")
-    private String direction = null;
+    @ApiModelProperty(example = "H", required = false, value = "Направление движения поезда. H - с головы поезда, T - с хвоста поезда", dataType = "String")
+    private TRAVEL_DIRECTION direction;
 }

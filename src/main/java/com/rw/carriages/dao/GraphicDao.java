@@ -115,7 +115,7 @@ public class GraphicDao implements SQLQueries{
         return map;
     }
 
-    public String getTravelDirection(String trainNumber) {
+    public CarriageGraphic.TRAVEL_DIRECTION getTravelDirection(String trainNumber) {
         String direction = null;
         Map<String,Object> params = new HashMap<String,Object>();
         if(trainNumber.length()>4) {
@@ -127,7 +127,7 @@ public class GraphicDao implements SQLQueries{
                     TRAVEL_DIRECTION, params, (rs, rowNum) -> rs.getString("TRAVEL_DIRECTION"));
         } catch (EmptyResultDataAccessException e) {
         }
-        return direction;
+        return direction!=null ?CarriageGraphic.TRAVEL_DIRECTION.valueOf(direction): null;
     }
 
     private CarriageGraphic getSeatsGraphicCarriageStrict(Seat46TypeBean seatsType, String carType, String carSubType, String carServiceClass, Set<String> availableServiceClasses) {

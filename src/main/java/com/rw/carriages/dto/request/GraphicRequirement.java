@@ -18,7 +18,7 @@ public class GraphicRequirement {
     public enum ORIENTATION {V,H};
     @ApiModelProperty(example = "708Б", required = true, value = "Номер поезда отправления", dataType = "String")
     @NotNull
-    @Size(min=4,max=5)
+    @Size(min=4,max=6)
     private String train;
 
     @ApiModelProperty(example = "2100276", required = true, value = "Код станции отправления", dataType = "String")

@@ -28,7 +28,7 @@ public class CarriageInfo {
     @Size(max = 5)
     private String subType;
 
-    @ApiModelProperty(example = "РИЦ", required = true, value = "Тип вагона для отображения, заполняется, если отличается от обычного типа вагона (параметр TypeShow из ответа шлюза) - код", dataType = "String")
+    @ApiModelProperty(example = "РИЦ", required = true, value = "Тип вагона для отображения, заполняется typeCode если не отличается от обычного типа вагона, иначе  - параметр TypeShow из ответа шлюза - код", dataType = "String")
     @Size(max = 3)
     private String typeCodeShow;
 
@@ -62,6 +62,6 @@ public class CarriageInfo {
     @Max(10000)
     private double tariff;
 
-    @ApiModelProperty(example = "false", required = false, value = "В данном вагоне места продаются только по 2", dataType = "boolean")
-    private boolean only2m;
+    @ApiModelProperty(example = "false", required = false, value = "В данном вагоне места продаются только по 2 (непустой тег 2m из Экспресса)", dataType = "boolean")
+    private boolean saleOnTwo;
 }
